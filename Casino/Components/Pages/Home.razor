@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+@{
+    var pages = new Dictionary<string, string> { { "Roulette", "/roulette" }, { "Poker", "/poker" }, { "Plinko", "/plinko" } };
+}
+
+<div class="grid">
+    @foreach (var kvp in pages)
+    {
+        <a class="game-buttons" href=@kvp.Value>@kvp.Key</a>
+    }
+</div>
