@@ -1,0 +1,20 @@
+﻿.grid {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 70px;
+}
+
+.game-btns {
+    background-color: forestgreen;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+    padding: 20px 30px;
+}
+
+.game-btns:hover {
+    background-color: #228b22c1;
+}

@@ -9,6 +9,8 @@
 <div class="grid">
     @foreach (var kvp in pages)
     {
-        <a class="game-buttons" href=@kvp.Value>@kvp.Key</a>
+        <div class="btn-containers">
+            <a class="game-btns" href=@kvp.Value>@kvp.Key</a>
+        </div>
     }
 </div>
