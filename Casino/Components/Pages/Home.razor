@@ -1,16 +1,32 @@
 ﻿@page "/"
+@inject Casino.Service.AppState appState
+@rendermode InteractiveServer 
 
 <PageTitle>Home</PageTitle>
+<Header />
 
 @{
     var pages = new Dictionary<string, string> { { "Roulette", "/roulette" }, { "Poker", "/poker" }, { "Plinko", "/plinko" } };
 }
 
-<div class="grid">
-    @foreach (var kvp in pages)
-    {
-        <div class="btn-containers">
-            <a class="game-btns" href=@kvp.Value>@kvp.Key</a>
-        </div>
-    }
+
+<div class="container">
+    <div class="grid">
+        @foreach (var kvp in pages)
+        {
+            <div class="btn-containers">
+                <a class="game-btns" href=@kvp.Value>@kvp.Key</a>
+            </div>
+        }
+    <button class="game-btns" @onclick="plus">@appState.Coins</button>
+    </div>
 </div>
+
+@code {
+    public void plus()
+    {
+        appState.Coins++;
+    }
+}
+
+

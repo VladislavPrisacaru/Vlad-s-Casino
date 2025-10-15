@@ -32,3 +32,7 @@ h1:focus {
     margin: 0;
     font-family: Consolas;
 }
+
+html, body {
+    overflow: hidden;
+}

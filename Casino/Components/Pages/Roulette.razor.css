@@ -1,0 +1,29 @@
+﻿.main-container {
+    width: 100vw;
+    height: 100vh;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+    background: #1F4B1F;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 20px;
+    height: 100vh; 
+    width: 100%;
+}
+
+.labels {
+    color: white;
+    font-size: 17px;
+}
+
+.slider-container {
+    display:flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: flex-start;
+}

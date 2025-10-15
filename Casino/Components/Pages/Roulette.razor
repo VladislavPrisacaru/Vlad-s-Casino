@@ -1,7 +1,34 @@
 ﻿@page "/roulette"
 
-<h3>Roulette</h3>
+@inject Casino.Service.AppState appState
+@rendermode InteractiveServer
 
-@code {
+<PageTitle>Home</PageTitle>
+<Header />
 
+
+<div class="main-container">
+
+    <div class="slider-container">
+        <p class="labels">Choose your bet ammount: @sliderValue</p>
+        <input type="range" min="1" max="@appState.Chips" @bind="sliderValue" @bind:event="oninput" class="slider" />
+    </div>
+
+    <div class="checkbox-container">
+        <p class="lables">Choose your color</p>
+
+        <div class="checkboxes">
+            <input type="checkbox" @bind="redChecked" />
+            <input type="checkbox" @bind="blackChecked" />
+        </div>
+
+    </div>
+
+</div>
+
+@code{
+    private int sliderValue = 20;
+
+    private bool redChecked;
+    private bool blackChecked;
 }

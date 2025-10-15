@@ -1,44 +1,9 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager Nav
-@inject Casino.Service.AppState appState
 
-<div class="main">
-    <div class="header">
-
-        <div class="stats">
-            <div class="stat-block">
-                <div class="label coins">Coins</div>
-                <div class="value coins">@appState.Coins</div>
-            </div>
-
-            <div class="stat-block">
-                <div class="label chips">Chips</div>
-                <div class="value chips">@appState.Chips</div>
-            </div>
-        </div>
-
-        <div class="header-items">
-
-            <h1 id="h-text">Vlad's Casino</h1>
-        </div>
-
-        <div class="home-btn-c"><a href="/" class="home-btn">Home</a></div>
-
-
-    </div>
-</div>
-
-<main class="content">
-    @Body
-</main>
+@Body
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
-
-@code {
-    int count = 0;
-    private void plus() => count++;
-}
