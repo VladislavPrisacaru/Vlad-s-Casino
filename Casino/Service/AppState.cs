@@ -18,7 +18,7 @@ namespace Casino.Service
             }
         }
 
-        private int _chips = 1000;
+        private int _chips = 100;
         public int Chips
         {
             get => _chips;

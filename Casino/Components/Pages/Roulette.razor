@@ -3,6 +3,8 @@
 @inject Casino.Service.AppState appState
 @rendermode InteractiveServer
 
+@using System.Linq;
+
 <PageTitle>Home</PageTitle>
 <Header />
 
@@ -10,17 +12,32 @@
 <div class="main-container">
 
     <div class="slider-container">
-        <p class="labels">Choose your bet ammount: @sliderValue</p>
-        <input type="range" min="1" max="@appState.Chips" @bind="sliderValue" @bind:event="oninput" class="slider" />
+        <div><p class="labels">Choose your bet ammount: @sliderValue</p></div>
+        <div><input type="range" min="1" max="@appState.Chips" @bind="sliderValue" @bind:event="oninput" class="slider" style="@getSliderStyle()" /></div>
     </div>
 
     <div class="checkbox-container">
-        <p class="lables">Choose your color</p>
+        <p class="labels">Choose your color</p>
 
-        <div class="checkboxes">
-            <input type="checkbox" @bind="redChecked" />
-            <input type="checkbox" @bind="blackChecked" />
+        <div class="check-boxes-container">
+            <input type="checkbox" class="check-box red" checked="@redChecked" @onchange='() => selectColour("red")' />
+            <input type="checkbox" class="check-box black" checked="@blackChecked" @onchange='() => selectColour("black")' />
         </div>
+
+    <div class="roulette-container">
+
+        <div class="roulette-cover"></div>
+
+        <div class="roulette-colours">
+            @foreach (var colour in rouletteColours!)
+            {   
+                <div class="colour @colour"></div>
+            }
+        </div>
+
+        <div class="roulette-cover"></div>
+
+    </div>
 
     </div>
 
@@ -31,4 +48,42 @@
 
     private bool redChecked;
     private bool blackChecked;
+
+    private string[] baseColours = { "red", "black" };
+    private string[]? rouletteColours;
+
+    protected override void OnInitialized()
+    {
+        rouletteColours = Enumerable.Repeat(baseColours, 15).SelectMany(x => x).ToArray();
+    }
+
+    private string getSliderStyle()
+    {
+        var percent = sliderValue;
+        return $@"
+            background: linear-gradient(90deg,
+                        #f70b0b 0%,
+                        #f70b0b {percent * 0.80}%,
+                        #0713ee 100%),
+                        lightgray;
+            background-size: {percent}% 100%;
+            background-repeat: no-repeat;
+        ";
+    }
+
+    private void selectColour(string colour)
+    {
+        if (colour == "red")
+        {
+            blackChecked = false;
+            redChecked = true;
+        }
+        else
+        {
+            redChecked = false;
+            blackChecked = true;
+        }
+    }
+
+
 }

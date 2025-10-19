@@ -18,12 +18,135 @@
 
 .labels {
     color: white;
-    font-size: 17px;
+    font-size: 25px;
 }
 
 .slider-container {
     display:flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     justify-content: flex-start;
+    place-items: center;
+    margin-bottom: 40px
 }
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 65vw;
+    height: 8px;
+    border-radius: 4px;
+    outline: none;
+    transition: background-size 0.001s linear;
+}
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 20px;
+        background: #f70b0b;
+        border: 4px solid #f70b0b;
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: flex-start;
+    place-items: center;
+}
+
+.check-boxes-container {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    place-items: center;
+    margin-bottom: 120px;
+}
+
+.check-box {
+    appearance: none;
+    width: 85px;
+    height: 55px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.check-box.red {
+    border: 4px solid red;
+}
+
+    .check-box.black {
+        border: 4px solid black;
+    }
+
+    .check-box.red:checked {
+        background-color: red;
+    }
+
+    .check-box.black:checked {
+        background-color: black;
+    }
+
+    .roulette-container {
+        display: flex;
+    }
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 70px solid white;
+    margin-bottom: 10px;
+}
+
+.roulette-container {
+    width: 70vw;
+    overflow: hidden;
+    position: relative;
+    border-left: 7px solid gray;
+    border-right: 7px solid gray;
+    padding-top: 7px; 
+    padding-bottom: 7px;
+}
+
+.roulette-colours {
+    display: flex;
+    gap: 2px;
+    background-color: white;
+}
+
+.colour {
+    width: 130px;
+    height: 110px;
+}
+
+    .colour.black {
+        background-color: black;
+    }
+
+    .colour.red {
+        background-color: red;
+    }
+
+.play-btn {
+    margin-top: 60px;
+    background-color: forestgreen;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+    padding: 20px 70px;
+    border: none;
+}
+
+    .play-btn:hover {
+        background-color: #228b22c1;
+    }
