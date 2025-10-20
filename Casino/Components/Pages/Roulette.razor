@@ -4,8 +4,10 @@
 @rendermode InteractiveServer
 
 @using System.Linq;
+@using System.Threading
+@using System.Threading.Tasks
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Roulette</PageTitle>
 <Header />
 
 
@@ -23,23 +25,26 @@
             <input type="checkbox" class="check-box red" checked="@redChecked" @onchange='() => selectColour("red")' />
             <input type="checkbox" class="check-box black" checked="@blackChecked" @onchange='() => selectColour("black")' />
         </div>
+    </div>
+
+    <div class="triangle"></div>
 
     <div class="roulette-container">
 
-        <div class="roulette-cover"></div>
-
-        <div class="roulette-colours">
+        <div class="roulette-colours" style="transform: translateX(@(-position % totalWidth)px)">
             @foreach (var colour in rouletteColours!)
-            {   
+            {
+                <div class="colour @colour"></div>
+            }
+            @foreach (var colour in rouletteColours!)
+            {
                 <div class="colour @colour"></div>
             }
         </div>
 
-        <div class="roulette-cover"></div>
-
     </div>
 
-    </div>
+    <button class="play-btn" @onclick="Spin">Play</button>
 
 </div>
 
@@ -85,5 +90,33 @@
         }
     }
 
+    private double position = 0;
+    private double velocity = 0;
+    private bool spinning = false;
+    private double segmentWidth = 132;
+    private double totalWidth => segmentWidth * rouletteColours!.Length;
 
+    private async Task Spin()
+    {
+        if (spinning) return;
+        velocity = 40;
+        spinning = true;
+
+        var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(16));
+
+        while (velocity > 0.1)
+        {
+            position -= velocity;
+            if (position >= totalWidth)
+                position -= totalWidth;
+            else if (position < 0)
+                position += totalWidth;
+
+            velocity *= 0.98;
+            await InvokeAsync(StateHasChanged);
+            await timer.WaitForNextTickAsync();
+        }
+
+        spinning = false;
+    }
 }

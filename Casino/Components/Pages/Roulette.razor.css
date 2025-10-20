@@ -114,11 +114,11 @@
     border-right: 7px solid gray;
     padding-top: 7px; 
     padding-bottom: 7px;
+    justify-content: center;
 }
 
 .roulette-colours {
     display: flex;
-    gap: 2px;
     background-color: white;
 }
 
